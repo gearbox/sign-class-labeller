@@ -1,0 +1,5 @@
+*.o
+sign-class-labeller
+moc_*
+build.make
+.clang_complete

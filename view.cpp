@@ -17,7 +17,7 @@ QPushButton * make_button(QPushButton **button, const QString &name) {
 }
 
 QLabel * make_label(QLabel **label, const QString &name, int width=-1,
-                    Qt::Alignment align=Qt::AlignLeft | Qt::AlignVCenter) {
+                    Qt::Alignment align = Qt::AlignLeft | Qt::AlignVCenter) {
   *label = new QLabel(name);
 
   if (width != -1)
@@ -42,8 +42,7 @@ View::View() : open_button_(), back_button_(), prev_button_(), next_button_(),
     enable_navigation(false);
 }
 
-void View::set_shortcuts()
-{
+void View::set_shortcuts() {
 #define BIND(shortcut_member, seq_string, slot_fun) shortcut_member = \
   new QShortcut(QKeySequence(seq_string), this); \
   connect(shortcut_member, SIGNAL(activated()), this, SIGNAL(slot_fun()));

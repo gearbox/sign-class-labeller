@@ -1,5 +1,5 @@
-#ifndef MODEL_H
-#define MODEL_H
+#ifndef LABELLING_MODEL_H_
+#define LABELLING_MODEL_H_
 
 #include <QVector>
 #include <QString>
@@ -44,4 +44,4 @@ class LabellingModel {
   bool loaded_;
 };
 
-#endif // MODEL_H
+#endif  // LABELLING_MODEL_H_

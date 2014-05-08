@@ -1,5 +1,5 @@
-#ifndef IMGLIST_H
-#define IMGLIST_H
+#ifndef IMGLIST_H_
+#define IMGLIST_H_
 
 #include <tuple>
 
@@ -8,12 +8,11 @@
 #include <QIcon>
 
 
-class ImgList : public QListWidget
-{
+class ImgList : public QListWidget {
   Q_OBJECT
 
  public:
-  ImgList(const QSize &item_size, bool multiselect=false);
+  ImgList(const QSize &item_size, bool multiselect = false);
   void set_imgs(const QVector<std::tuple<QString, QIcon>> &icons);
   void set_imgs(const QVector<std::tuple<QString, QIcon>> &icons,
                 const QVector<bool> &marks);
@@ -22,4 +21,4 @@ class ImgList : public QListWidget
   QSize item_size_;
 };
 
-#endif // IMGLIST_H
+#endif  // IMGLIST_H_

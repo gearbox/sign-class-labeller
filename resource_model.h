@@ -1,5 +1,5 @@
-#ifndef RESOURCE_MODEL_H
-#define RESOURCE_MODEL_H
+#ifndef RESOURCE_MODEL_H_
+#define RESOURCE_MODEL_H_
 
 #include <tuple>
 
@@ -25,4 +25,4 @@ class ResourceModel {
   QVector<QVector<std::tuple<QString, QIcon>>> class_icons_;
 };
 
-#endif // RESOURCE_MODEL_H
+#endif  // RESOURCE_MODEL_H_

@@ -1,5 +1,5 @@
-#ifndef _CONTROLLER_H_
-#define _CONTROLLER_H_
+#ifndef CONTROLLER_H_
+#define CONTROLLER_H_
 
 #include <tuple>
 
@@ -29,10 +29,10 @@ class Controller : public QObject {
   LabellingModel *lab_model_;
   bool block_opt_;
 
-  void change_index(int index, bool save=true);
+  void change_index(int index, bool save = true);
   void set_class(const QString &name);
   void show_class_icons(const QString &superclass_name);
   void update_navigation();
 };
 
-#endif  // _CONTROLLER_H_
+#endif  // CONTROLLER_H_

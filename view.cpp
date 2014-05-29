@@ -112,8 +112,12 @@ void View::bind_signals() {
 }
 
 QString View::show_dir_dialog(const QString &label) {
-  return QFileDialog::getExistingDirectory(this, label, "",
-                                           QFileDialog::ShowDirsOnly);
+  QFileDialog dialog;
+  dialog.setFileMode(QFileDialog::Directory);
+  dialog.setOption(QFileDialog::ShowDirsOnly);
+  if (dialog.exec())
+      return dialog.selectedFiles()[0];
+  return "";
 }
 
 void View::show_error(const QString &title, const QString &message) {

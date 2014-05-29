@@ -34,7 +34,7 @@ void Controller::open_labelling() {
   } catch (const char *err) {
     view_->show_error("Labelling reading error", err);
   }
-  change_index(0, false);
+  change_index(lab_model_->get_unlabelled_ind(), false);
 }
 
 void Controller::change_index(int index, bool save) {

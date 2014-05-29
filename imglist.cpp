@@ -37,3 +37,13 @@ void ImgList::set_imgs(const QVector<tuple<QString, QIcon>> &icons,
     item->setSelected(marks.at(i));
   }
 }
+
+void ImgList::select_icon(const QString &label)
+{
+  for (int i = 0; i < count(); ++i) {
+    QListWidgetItem *item = this->item(i);
+    if (item->text() == label) {
+      item->setSelected(true);
+    }
+  }
+}

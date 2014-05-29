@@ -69,3 +69,14 @@ QVector<tuple<QString, QIcon>> ResourceModel::get_class_icons(
 
   return class_icons_[i];
 }
+
+QString ResourceModel::get_superclass_by_classname(const QString &classname)
+  const {
+  for (int i = 0; i < class_icons_.size(); ++i) {
+    for (const auto &class_pair : class_icons_[i]) {
+      if (get<0>(class_pair) == classname)
+        return get<0>(superclass_icons_[i]);
+    }
+  }
+  return "";
+}

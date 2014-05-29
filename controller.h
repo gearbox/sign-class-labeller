@@ -32,6 +32,7 @@ class Controller : public QObject {
   void change_index(int index, bool save = true);
   void set_class(const QString &name);
   void show_class_icons(const QString &superclass_name);
+  void select_current_class_icon();
   void update_navigation();
 };
 

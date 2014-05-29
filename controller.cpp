@@ -52,7 +52,7 @@ void Controller::change_index(int index, bool save) {
   view_->show_sign_imgs(imgs, lab_model_->get_marks());
   view_->set_class_label(lab_model_->get_class());
   view_->set_count_label(index + 1, lab_model_->get_labelling().size());
-  show_superclass_icons();
+  select_current_class_icon();
   update_navigation();
 }
 
@@ -82,6 +82,24 @@ void Controller::next_img() {
 
 void Controller::prev_img() {
   change_index(lab_model_->get_sign_index() - 1);
+}
+
+void Controller::select_current_class_icon()
+{
+  QString current_class = lab_model_->get_class();
+  if (current_class == "NONE") {
+    show_superclass_icons();
+    return;
+  }
+
+  if (current_class == "unknown") {
+    show_superclass_icons();
+  } else {
+    QString superclass_name = res_model_->get_superclass_by_classname(
+        current_class);
+    show_class_icons(superclass_name);
+  }
+  view_->select_icon(current_class);
 }
 
 void Controller::icon_click(const QString &name) {

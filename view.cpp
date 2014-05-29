@@ -180,3 +180,8 @@ double View::input_real_number() {
     "Number on sign", 0, 0, 10, 1, &ok);
   return (ok ? number : -1);
 }
+
+void View::select_icon(const QString &label)
+{
+  class_icons_->select_icon(label);
+}

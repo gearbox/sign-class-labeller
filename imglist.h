@@ -16,6 +16,7 @@ class ImgList : public QListWidget {
   void set_imgs(const QVector<std::tuple<QString, QIcon>> &icons);
   void set_imgs(const QVector<std::tuple<QString, QIcon>> &icons,
                 const QVector<bool> &marks);
+  void select_icon(const QString &label);
 
  private:
   QSize item_size_;

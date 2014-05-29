@@ -37,6 +37,8 @@ class View : public QWidget {
   int input_number();
   double input_real_number();
 
+  void select_icon(const QString &label);
+
  signals:
   void open_labelling();
   void next_img();

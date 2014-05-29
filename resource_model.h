@@ -20,6 +20,8 @@ class ResourceModel {
   QVector<std::tuple<QString, QIcon>> get_class_icons(
       const QString &superclass_name) const;
 
+  QString get_superclass_by_classname(const QString &classname) const;
+
  private:
   QVector<std::tuple<QString, QIcon>> superclass_icons_;
   QVector<QVector<std::tuple<QString, QIcon>>> class_icons_;

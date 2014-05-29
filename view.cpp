@@ -68,7 +68,7 @@ void View::set_layout() {
     make_spacer(20),
     make_button(&back_button_, "Back to superclass"),
     make_spacer(50),
-    make_label(&class_label_, "Current class: ", 150),
+    make_label(&class_label_, "Sign class: ", 150),
     make_spacer(20),
     make_button(&prev_button_, "Prev image"),
     make_label(&count_label_, "", 100, Qt::AlignCenter),
@@ -159,7 +159,7 @@ void View::icon_clicked(QListWidgetItem *item) {
 }
 
 void View::set_class_label(const QString &label) {
-  class_label_->setText("Current class: " + label);
+  class_label_->setText("Sign class: " + label);
 }
 
 void View::set_count_label(int cur_val, int max_val) {

@@ -8,7 +8,7 @@ from skimage.io import imread, imsave, use_plugin
 use_plugin('freeimage')
 
 if len(argv) != 3:
-    stdout.write('Usage: %s labelling_path output_dir' % argv[0])
+    stdout.write('Usage: %s labelling_path output_dir\n' % argv[0])
     exit(1)
 
 labelling_path = argv[1]

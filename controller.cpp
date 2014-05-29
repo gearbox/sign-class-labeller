@@ -91,7 +91,7 @@ void Controller::icon_click(const QString &name) {
   } else {
     QString new_name = name;
     if (lab_model_->is_loaded()) {
-      if (new_name.right(1) == "n" && new_name != "unknown") {
+      if (new_name.right(1) == "n" && !new_name.endsWith("unknown")) {
         int n = view_->input_number();
         if (n == -1)
           return;

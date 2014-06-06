@@ -21,8 +21,6 @@ HEADERS += labelling_model.h \
            controller.h \
            imglist.h
 
-LIBS += -lgtest
-
 tests {
     SOURCES += tests/main.cpp
 } else {

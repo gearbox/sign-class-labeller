@@ -21,6 +21,7 @@ class Controller : public QObject {
   void show_superclass_icons();
   void next_img();
   void prev_img();
+  void next_unknown();
   void icon_click(const QString &name);
 
  private:

@@ -158,5 +158,28 @@ int LabellingModel::get_unlabelled_ind() const {
   for (; i < labelling_.size(); ++i)
     if (get<1>(labelling_[i]) == "NONE")
       break;
-  return i;
+  if (i != labelling_.size())
+      return i;
+  return -1;
+}
+
+int LabellingModel::get_unknown_ind() const {
+  if (!loaded_)
+      return -1;
+
+  int i = sign_index_ + 1;
+  for (; i < labelling_.size(); ++i)
+    if (get<1>(labelling_[i]).endsWith("unknown"))
+      break;
+  if (i != labelling_.size())
+      return i;
+
+  i = 0;
+  for (; i < sign_index_; ++i)
+    if (get<1>(labelling_[i]).endsWith("unknown"))
+      break;
+  if (i != sign_index_)
+      return i;
+
+  return -1;
 }

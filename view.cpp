@@ -33,7 +33,7 @@ QSpacerItem * make_spacer(int width) {
 }
 
 View::View() : open_button_(), back_button_(), prev_button_(), next_button_(),
-  prev_shortcut_(), next_shortcut_(),
+  unknown_button_(), prev_shortcut_(), next_shortcut_(),
   class_label_(), count_label_(), class_icons_(), sign_imgs_() {
     showMaximized();
     set_layout();
@@ -72,7 +72,9 @@ void View::set_layout() {
     make_spacer(20),
     make_button(&prev_button_, "Prev image"),
     make_label(&count_label_, "", 100, Qt::AlignCenter),
-    make_button(&next_button_, "Next image")
+    make_button(&next_button_, "Next image"),
+    make_spacer(50),
+    make_button(&unknown_button_, "Next unknown")
   };
 
   for (auto object : objects) {
@@ -103,6 +105,8 @@ void View::bind_signals() {
   connect(prev_button_, SIGNAL(clicked()), this, SIGNAL(prev_img()));
   connect(back_button_, SIGNAL(clicked()), this,
           SIGNAL(show_superclass_icons()));
+  connect(unknown_button_, SIGNAL(clicked()), this,
+          SIGNAL(next_unknown()));
   connect(class_icons_, SIGNAL(itemClicked(QListWidgetItem*)), this,
           SLOT(icon_clicked(QListWidgetItem*)));
 }

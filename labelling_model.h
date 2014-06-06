@@ -35,6 +35,7 @@ class LabellingModel {
   bool is_loaded() const;
 
   int get_unlabelled_ind() const;
+  int get_unknown_ind() const;
 
  private:
   QVector<std::tuple<QString, QString, QVector<std::tuple<QString, bool>>>>

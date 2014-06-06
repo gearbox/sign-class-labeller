@@ -17,6 +17,7 @@ Controller::Controller(View *view, bool block_opt) : view_(view),
           SLOT(show_superclass_icons()));
   connect(view_, SIGNAL(next_img()), this, SLOT(next_img()));
   connect(view_, SIGNAL(prev_img()), this, SLOT(prev_img()));
+  connect(view_, SIGNAL(next_unknown()), this, SLOT(next_unknown()));
   connect(view_, SIGNAL(icon_click(const QString &)), this,
           SLOT(icon_click(const QString &)));
 }
@@ -135,3 +136,10 @@ void Controller::set_class(const QString &name) {
   lab_model_->set_class(name);
   update_navigation();
 }
+
+void Controller::next_unknown() {
+  int ind = lab_model_->get_unknown_ind();
+  if (ind != -1)
+    change_index(ind);
+}
+

@@ -34,7 +34,10 @@ void Controller::open_labelling() {
   } catch (const char *err) {
     view_->show_error("Labelling reading error", err);
   }
-  change_index(lab_model_->get_unlabelled_ind(), false);
+  int ind = lab_model_->get_unlabelled_ind();
+  if (ind == -1)
+    ind = 0;
+  change_index(ind, false);
 }
 
 void Controller::change_index(int index, bool save) {
@@ -62,8 +65,10 @@ void Controller::update_navigation() {
   view_->set_prev_enabled(index != 0);
   view_->set_next_enabled(index != lab_model_->get_labelling().size() - 1);
 
-  if (block_opt_)
-    view_->set_next_enabled(index < lab_model_->get_unlabelled_ind());
+  if (block_opt_) {
+    int unlabelled_ind = lab_model_->get_unlabelled_ind();
+    view_->set_next_enabled(index < unlabelled_ind || unlabelled_ind == -1);
+  }
 }
 
 void Controller::show_superclass_icons() {

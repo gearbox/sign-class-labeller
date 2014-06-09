@@ -13,16 +13,11 @@ SOURCES += labelling_model.cpp \
            resource_model.cpp \
            view.cpp \
            controller.cpp \
-           imglist.cpp
+           imglist.cpp \
+           main.cpp
 
 HEADERS += labelling_model.h \
            resource_model.h \
            view.h \
            controller.h \
            imglist.h
-
-tests {
-    SOURCES += tests/main.cpp
-} else {
-    SOURCES += main.cpp
-}

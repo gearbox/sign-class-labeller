@@ -90,8 +90,7 @@ void Controller::prev_img() {
   change_index(lab_model_->get_sign_index() - 1);
 }
 
-void Controller::select_current_class_icon()
-{
+void Controller::select_current_class_icon() {
   QString current_class = lab_model_->get_class();
   if (current_class == "NONE") {
     show_superclass_icons();

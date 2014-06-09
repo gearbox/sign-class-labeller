@@ -1,5 +1,5 @@
-#ifndef VIEW_H
-#define VIEW_H
+#ifndef VIEW_H_
+#define VIEW_H_
 
 #include <tuple>
 
@@ -15,7 +15,7 @@
 #include "imglist.h"
 
 class View : public QWidget {
- Q_OBJECT
+  Q_OBJECT
 
  public:
   View();
@@ -62,4 +62,4 @@ class View : public QWidget {
   void bind_signals();
 };
 
-#endif // VIEW_H
+#endif  // VIEW_H_

@@ -111,7 +111,7 @@ void View::bind_signals() {
           SLOT(icon_clicked(QListWidgetItem*)));
 }
 
-QString View::show_dir_dialog(const QString &label) {
+QString View::show_dir_dialog() {
   QFileDialog dialog;
   dialog.setFileMode(QFileDialog::Directory);
   dialog.setOption(QFileDialog::ShowDirsOnly);

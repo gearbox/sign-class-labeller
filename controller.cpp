@@ -23,7 +23,7 @@ Controller::Controller(View *view, bool block_opt) : view_(view),
 }
 
 void Controller::open_labelling() {
-  QString dirname = view_->show_dir_dialog("Open directory");
+  QString dirname = view_->show_dir_dialog();
 
   if (dirname == "")
     return;

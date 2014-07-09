@@ -20,7 +20,7 @@ class View : public QWidget {
  public:
   View();
 
-  QString show_dir_dialog(const QString &label);
+  QString show_dir_dialog();
   void show_error(const QString &title, const QString &message);
   void show_sign_icons(const QVector<std::tuple<QString, QIcon>> &icons);
   void show_sign_imgs(const QVector<std::tuple<QString, QIcon>> &imgs,

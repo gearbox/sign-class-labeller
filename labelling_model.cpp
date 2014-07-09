@@ -17,6 +17,10 @@ void LabellingModel::read_labelling(QTextStream &stream) {
     QString id, filename;
     int count;
     stream >> id >> count;
+
+    if (stream.atEnd())
+        break;
+
     QVector<tuple<QString, bool>> sign_imgs;
     for (int i = 0; i < count; ++i) {
       stream >> filename;
@@ -38,6 +42,10 @@ void LabellingModel::read_out_labelling(QTextStream &stream) {
     QString id, filename, class_name;
     int count, mark;
     stream >> id >> class_name >> count;
+
+    if (stream.atEnd())
+        break;
+
     QVector<tuple<QString, bool>> sign_imgs;
     for (int i = 0; i < count; ++i) {
       stream >> filename >> mark;

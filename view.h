@@ -46,6 +46,7 @@ class View : public QWidget {
   void next_unknown();
   void show_superclass_icons();
   void icon_click(const QString &name);
+  void sign_img_selection_change();
 
  private slots:
   void icon_clicked(QListWidgetItem *item);

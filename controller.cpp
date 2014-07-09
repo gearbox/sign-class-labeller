@@ -20,6 +20,8 @@ Controller::Controller(View *view, bool block_opt) : view_(view),
   connect(view_, SIGNAL(next_unknown()), this, SLOT(next_unknown()));
   connect(view_, SIGNAL(icon_click(const QString &)), this,
           SLOT(icon_click(const QString &)));
+  connect(view_, SIGNAL(sign_img_selection_change()), this,
+          SLOT(save_labelling()));
 }
 
 void Controller::open_labelling() {
@@ -38,15 +40,10 @@ void Controller::open_labelling() {
   int ind = lab_model_->get_unlabelled_ind();
   if (ind == -1)
     ind = 0;
-  change_index(ind, false);
+  change_index(ind);
 }
 
-void Controller::change_index(int index, bool save) {
-  if (save) {
-    lab_model_->set_marks(view_->get_marks());
-    lab_model_->save_labelling();
-  }
-
+void Controller::change_index(int index) {
   index = max(0, min(index, lab_model_->get_labelling().size() - 1));
 
   lab_model_->set_sign_index(index);
@@ -131,8 +128,14 @@ void Controller::icon_click(const QString &name) {
   }
 }
 
+void Controller::save_labelling() {
+  lab_model_->set_marks(view_->get_marks());
+  lab_model_->save_labelling();
+}
+
 void Controller::set_class(const QString &name) {
   lab_model_->set_class(name);
+  save_labelling();
   update_navigation();
 }
 

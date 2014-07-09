@@ -23,6 +23,7 @@ class Controller : public QObject {
   void prev_img();
   void next_unknown();
   void icon_click(const QString &name);
+  void save_labelling();
 
  private:
   View *view_;
@@ -30,7 +31,7 @@ class Controller : public QObject {
   LabellingModel *lab_model_;
   bool block_opt_;
 
-  void change_index(int index, bool save = true);
+  void change_index(int index);
   void set_class(const QString &name);
   void show_class_icons(const QString &superclass_name);
   void select_current_class_icon();

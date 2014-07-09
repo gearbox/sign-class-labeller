@@ -109,6 +109,8 @@ void View::bind_signals() {
           SIGNAL(next_unknown()));
   connect(class_icons_, SIGNAL(itemClicked(QListWidgetItem*)), this,
           SLOT(icon_clicked(QListWidgetItem*)));
+  connect(sign_imgs_, SIGNAL(itemSelectionChanged()), this,
+          SIGNAL(sign_img_selection_change()));
 }
 
 QString View::show_dir_dialog() {

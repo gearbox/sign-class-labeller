@@ -24,7 +24,7 @@ void LabellingModel::read_labelling(QTextStream &stream) {
     QVector<tuple<QString, bool>> sign_imgs;
     for (int i = 0; i < count; ++i) {
       stream >> filename;
-      sign_imgs.push_back(make_tuple(filename, false));
+      sign_imgs.push_back(make_tuple(filename, true));
     }
     labelling_.push_back(make_tuple(id, "NONE", sign_imgs));
   }

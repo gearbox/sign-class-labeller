@@ -95,6 +95,19 @@ void View::set_layout() {
   mainLayout->addWidget(class_icons_);
 
   sign_imgs_ = new ImgList(QSize(128, 128), true);
+  sign_imgs_->setStyleSheet(
+  R"(
+  QListWidget::item {
+    border: 2px solid red;
+  }
+  QListWidget::item::text {
+    color: black;
+  }
+  QListWidget::item:selected {
+    border: 2px solid green;
+  })"
+  );
+
   mainLayout->addWidget(sign_imgs_);
 
   setLayout(mainLayout);

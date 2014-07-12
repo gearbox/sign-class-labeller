@@ -15,6 +15,7 @@ ImgList::ImgList(const QSize &item_size, bool multiselect)
   if (multiselect)
       setSelectionMode(QAbstractItemView::MultiSelection);
 
+  setFocusPolicy(Qt::NoFocus);
   setViewMode(QListWidget::IconMode);
   setDragEnabled(false);
   setIconSize(item_size);

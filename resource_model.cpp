@@ -18,6 +18,8 @@ QVector<tuple<QString, QIcon>> ResourceModel::load_imgs(const QString &path,
   QVector<tuple<QString, QIcon>> imgs;
   for (const auto &filename : filenames) {
     QImage img(path + "/" + filename);
+    img = img.scaled(img.width() * 2, img.height() * 2, Qt::IgnoreAspectRatio,
+      Qt::SmoothTransformation);
     imgs.push_back(make_tuple(filename,
       QIcon(QPixmap::fromImage(img))));
   }

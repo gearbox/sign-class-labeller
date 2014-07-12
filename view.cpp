@@ -49,6 +49,7 @@ void View::set_shortcuts() {
 
   BIND(prev_shortcut_, "Left", prev_img);
   BIND(next_shortcut_, "Right", next_img);
+  BIND(superclass_shortcut_, "Backspace", show_superclass_icons);
 
 #undef BIND
 }

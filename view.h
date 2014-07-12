@@ -54,7 +54,7 @@ class View : public QWidget {
  private:
   QPushButton *open_button_, *back_button_, *prev_button_, *next_button_;
   QPushButton *unknown_button_;
-  QShortcut *prev_shortcut_, *next_shortcut_;
+  QShortcut *prev_shortcut_, *next_shortcut_, *superclass_shortcut_;
   QLabel *class_label_, *count_label_;
   ImgList *class_icons_, *sign_imgs_;
 

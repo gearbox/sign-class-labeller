@@ -3,6 +3,7 @@ using std::min;
 using std::max;
 
 using std::tuple;
+using std::get;
 
 #include "./controller.h"
 
@@ -22,6 +23,8 @@ Controller::Controller(View *view, bool block_opt) : view_(view),
           SLOT(icon_click(const QString &)));
   connect(view_, SIGNAL(sign_img_selection_change()), this,
           SLOT(save_labelling()));
+  connect(view_, SIGNAL(sign_img_selection_change()), this,
+          SLOT(update_navigation()));
 }
 
 void Controller::open_labelling() {
@@ -64,8 +67,7 @@ void Controller::update_navigation() {
   view_->set_next_enabled(index != lab_model_->get_labelling().size() - 1);
 
   if (block_opt_) {
-    int unlabelled_ind = lab_model_->get_unlabelled_ind();
-    view_->set_next_enabled(index < unlabelled_ind || unlabelled_ind == -1);
+    view_->set_next_enabled(check_sign_labelled());
   }
 }
 
@@ -131,6 +133,22 @@ void Controller::icon_click(const QString &name) {
 void Controller::save_labelling() {
   lab_model_->set_marks(view_->get_marks());
   lab_model_->save_labelling();
+}
+
+bool Controller::check_sign_labelled() {
+  bool res = false;
+  QVector<tuple<QString, bool>> marks = view_->get_marks();
+  for (const auto &mark : marks) {
+    if (get<1>(mark)) {
+      res = true;
+      break;
+    }
+  }
+  int unlabelled_ind = lab_model_->get_unlabelled_ind();
+  int index = lab_model_->get_sign_index();
+  res &= (index < unlabelled_ind || unlabelled_ind == -1);
+  res |= lab_model_->get_class().endsWith("unknown");
+  return res;
 }
 
 void Controller::set_class(const QString &name) {

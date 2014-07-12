@@ -24,6 +24,7 @@ class Controller : public QObject {
   void next_unknown();
   void icon_click(const QString &name);
   void save_labelling();
+  void update_navigation();
 
  private:
   View *view_;
@@ -35,7 +36,7 @@ class Controller : public QObject {
   void set_class(const QString &name);
   void show_class_icons(const QString &superclass_name);
   void select_current_class_icon();
-  void update_navigation();
+  bool check_sign_labelled();
 };
 
 #endif  // CONTROLLER_H_

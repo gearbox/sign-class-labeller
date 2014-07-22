@@ -9,7 +9,7 @@ using std::make_tuple;
 using std::get;
 
 LabellingModel::LabellingModel() : labelling_(), dirname_(), sign_index_(-1),
-  loaded_(false) {
+  loaded_(false), seconds_elapsed_(0), timer_() {
 }
 
 void LabellingModel::read_labelling(QTextStream &stream) {
@@ -35,9 +35,11 @@ void LabellingModel::read_labelling(QTextStream &stream) {
     sign_index_ = -1;
     loaded_ = false;
   }
+  timer_.start();
 }
 
 void LabellingModel::read_out_labelling(QTextStream &stream) {
+  stream >> seconds_elapsed_;
   while (!stream.atEnd()) {
     QString id, filename, class_name;
     int count, mark;
@@ -60,9 +62,13 @@ void LabellingModel::read_out_labelling(QTextStream &stream) {
     sign_index_ = -1;
     loaded_ = false;
   }
+  timer_.start();
 }
 
+#include <QDebug>
+
 void LabellingModel::save_labelling(QTextStream &stream) {
+  stream << (seconds_elapsed_ + timer_.elapsed() / 1000) << endl;
   for (const auto &sign_tuple : labelling_) {
     const auto &sign_imgs = get<2>(sign_tuple);
     stream << get<0>(sign_tuple) << " " << get<1>(sign_tuple)

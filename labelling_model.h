@@ -4,6 +4,7 @@
 #include <QVector>
 #include <QString>
 #include <QTextStream>
+#include <QElapsedTimer>
 #include <tuple>
 
 class LabellingModel {
@@ -43,6 +44,8 @@ class LabellingModel {
   QString dirname_;
   int sign_index_;
   bool loaded_;
+  int seconds_elapsed_;
+  QElapsedTimer timer_;
 };
 
 #endif  // LABELLING_MODEL_H_

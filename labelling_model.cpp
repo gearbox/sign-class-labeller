@@ -13,6 +13,7 @@ LabellingModel::LabellingModel() : labelling_(), dirname_(), sign_index_(-1),
 }
 
 void LabellingModel::read_labelling(QTextStream &stream) {
+  labelling_.clear();
   while (!stream.atEnd()) {
     QString id, filename;
     int count;
@@ -39,6 +40,7 @@ void LabellingModel::read_labelling(QTextStream &stream) {
 }
 
 void LabellingModel::read_out_labelling(QTextStream &stream) {
+  labelling_.clear();
   stream >> seconds_elapsed_;
   while (!stream.atEnd()) {
     QString id, filename, class_name;

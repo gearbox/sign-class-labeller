@@ -5,13 +5,14 @@
 
 class MyApplication : public QApplication {
  public:
-  MyApplication(int &argc, char **argv): QApplication(argc, argv) {}
+  MyApplication(int &argc, char **argv) : QApplication(argc, argv) {}
 
  private:
   bool notify(QObject *receiver, QEvent *event) {
     try {
-      return QApplication::notify( receiver, event );
-    } catch ( ... ) {
+      return QApplication::notify(receiver, event);
+    }
+    catch (...) {
       return false;
     }
   }

@@ -16,7 +16,8 @@ class Controller : public QObject {
  public:
   Controller(View *view, bool block_opt);
 
- private slots:
+ private
+slots:
   void open_labelling();
   void show_superclass_icons();
   void next_img();

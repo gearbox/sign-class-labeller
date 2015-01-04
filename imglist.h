@@ -7,7 +7,6 @@
 #include <QVector>
 #include <QIcon>
 
-
 class ImgList : public QListWidget {
   Q_OBJECT
 

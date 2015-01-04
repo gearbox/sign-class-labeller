@@ -8,9 +8,13 @@ using std::tuple;
 using std::make_tuple;
 using std::get;
 
-LabellingModel::LabellingModel() : labelling_(), dirname_(), sign_index_(-1),
-  loaded_(false), seconds_elapsed_(0), timer_() {
-}
+LabellingModel::LabellingModel()
+    : labelling_(),
+      dirname_(),
+      sign_index_(-1),
+      loaded_(false),
+      seconds_elapsed_(0),
+      timer_() {}
 
 void LabellingModel::read_labelling(QTextStream &stream) {
   labelling_.clear();
@@ -19,8 +23,7 @@ void LabellingModel::read_labelling(QTextStream &stream) {
     int count;
     stream >> id >> count;
 
-    if (stream.atEnd())
-        break;
+    if (stream.atEnd()) break;
 
     QVector<tuple<QString, bool>> sign_imgs;
     for (int i = 0; i < count; ++i) {
@@ -47,8 +50,7 @@ void LabellingModel::read_out_labelling(QTextStream &stream) {
     int count, mark;
     stream >> id >> class_name >> count;
 
-    if (stream.atEnd())
-        break;
+    if (stream.atEnd()) break;
 
     QVector<tuple<QString, bool>> sign_imgs;
     for (int i = 0; i < count; ++i) {
@@ -73,8 +75,8 @@ void LabellingModel::save_labelling(QTextStream &stream) {
   stream << (seconds_elapsed_ + timer_.elapsed() / 1000) << endl;
   for (const auto &sign_tuple : labelling_) {
     const auto &sign_imgs = get<2>(sign_tuple);
-    stream << get<0>(sign_tuple) << " " << get<1>(sign_tuple)
-           << " " << sign_imgs.size();
+    stream << get<0>(sign_tuple) << " " << get<1>(sign_tuple) << " "
+           << sign_imgs.size();
     for (const auto &sign_img : sign_imgs)
       stream << " " << get<0>(sign_img) << " " << get<1>(sign_img);
     stream << endl;
@@ -104,13 +106,9 @@ void LabellingModel::set_marks(const QVector<tuple<QString, bool>> &marks) {
   get<2>(labelling_[sign_index_]) = marks;
 }
 
-void LabellingModel::set_dirname(const QString &dirname) {
-  dirname_ = dirname;
-}
+void LabellingModel::set_dirname(const QString &dirname) { dirname_ = dirname; }
 
-QString LabellingModel::get_dirname() const {
-  return dirname_;
-}
+QString LabellingModel::get_dirname() const { return dirname_; }
 
 void LabellingModel::read_labelling() {
   assert(dirname_ != "");
@@ -124,8 +122,7 @@ void LabellingModel::read_labelling() {
   }
 
   QFile labelling(dirname_ + "/in_labelling.txt");
-  if (!labelling.exists())
-    throw "File in_labelling.txt not found";
+  if (!labelling.exists()) throw "File in_labelling.txt not found";
 
   if (!labelling.open(QIODevice::ReadOnly | QIODevice::Text))
     throw "File in_labelling.txt can't be opened for reading";
@@ -145,13 +142,10 @@ void LabellingModel::save_labelling() {
   save_labelling(stream);
 }
 
-int LabellingModel::get_sign_index() const {
-  return sign_index_;
-}
+int LabellingModel::get_sign_index() const { return sign_index_; }
 
 void LabellingModel::set_sign_index(int index) {
-  if (!(0 <= index && index < labelling_.size()))
-    throw "Invalid index";
+  if (!(0 <= index && index < labelling_.size())) throw "Invalid index";
   sign_index_ = index;
 }
 
@@ -159,43 +153,33 @@ void LabellingModel::set_class(const QString &name) {
   get<1>(labelling_[sign_index_]) = name;
 }
 
-bool LabellingModel::is_loaded() const {
-  return loaded_;
-}
+bool LabellingModel::is_loaded() const { return loaded_; }
 QString LabellingModel::get_class() const {
   return get<1>(labelling_[sign_index_]);
 }
 
 int LabellingModel::get_unlabelled_ind() const {
-  if (!loaded_)
-    return -1;
+  if (!loaded_) return -1;
 
   int i = 0;
   for (; i < labelling_.size(); ++i)
-    if (get<1>(labelling_[i]) == "NONE")
-      break;
-  if (i != labelling_.size())
-      return i;
+    if (get<1>(labelling_[i]) == "NONE") break;
+  if (i != labelling_.size()) return i;
   return -1;
 }
 
 int LabellingModel::get_unknown_ind() const {
-  if (!loaded_)
-      return -1;
+  if (!loaded_) return -1;
 
   int i = sign_index_ + 1;
   for (; i < labelling_.size(); ++i)
-    if (get<1>(labelling_[i]).endsWith("unknown"))
-      break;
-  if (i != labelling_.size())
-      return i;
+    if (get<1>(labelling_[i]).endsWith("unknown")) break;
+  if (i != labelling_.size()) return i;
 
   i = 0;
   for (; i < sign_index_; ++i)
-    if (get<1>(labelling_[i]).endsWith("unknown"))
-      break;
-  if (i != sign_index_)
-      return i;
+    if (get<1>(labelling_[i]).endsWith("unknown")) break;
+  if (i != sign_index_) return i;
 
   return -1;
 }

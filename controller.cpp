@@ -7,9 +7,11 @@ using std::get;
 
 #include "./controller.h"
 
-Controller::Controller(View *view, bool block_opt) : view_(view),
-  res_model_(new ResourceModel), lab_model_(new LabellingModel),
-  block_opt_(block_opt) {
+Controller::Controller(View *view, bool block_opt)
+    : view_(view),
+      res_model_(new ResourceModel),
+      lab_model_(new LabellingModel),
+      block_opt_(block_opt) {
   res_model_->load_sign_icons();
   show_superclass_icons();
 
@@ -30,19 +32,18 @@ Controller::Controller(View *view, bool block_opt) : view_(view),
 void Controller::open_labelling() {
   QString dirname = view_->show_dir_dialog();
 
-  if (dirname == "")
-    return;
+  if (dirname == "") return;
 
   lab_model_->set_dirname(dirname);
 
   try {
     lab_model_->read_labelling();
-  } catch (const char *err) {
+  }
+  catch (const char *err) {
     view_->show_error("Labelling reading error", err);
   }
   int ind = lab_model_->get_unlabelled_ind();
-  if (ind == -1)
-    ind = 0;
+  if (ind == -1) ind = 0;
   change_index(ind);
 }
 
@@ -51,7 +52,7 @@ void Controller::change_index(int index) {
 
   lab_model_->set_sign_index(index);
   auto imgs = res_model_->load_imgs(lab_model_->get_dirname(),
-      lab_model_->get_filenames());
+                                    lab_model_->get_filenames());
 
   view_->show_sign_imgs(imgs, lab_model_->get_marks());
   view_->set_class_label(lab_model_->get_class());
@@ -81,13 +82,9 @@ void Controller::show_class_icons(const QString &superclass_name) {
   view_->set_back_enabled(true);
 }
 
-void Controller::next_img() {
-  change_index(lab_model_->get_sign_index() + 1);
-}
+void Controller::next_img() { change_index(lab_model_->get_sign_index() + 1); }
 
-void Controller::prev_img() {
-  change_index(lab_model_->get_sign_index() - 1);
-}
+void Controller::prev_img() { change_index(lab_model_->get_sign_index() - 1); }
 
 void Controller::select_current_class_icon() {
   QString current_class = lab_model_->get_class();
@@ -99,8 +96,8 @@ void Controller::select_current_class_icon() {
   if (current_class == "unknown") {
     show_superclass_icons();
   } else {
-    QString superclass_name = res_model_->get_superclass_by_classname(
-        current_class);
+    QString superclass_name =
+        res_model_->get_superclass_by_classname(current_class);
     show_class_icons(superclass_name);
   }
   view_->select_icon(current_class);
@@ -115,13 +112,11 @@ void Controller::icon_click(const QString &name) {
     if (lab_model_->is_loaded()) {
       if (new_name.right(1) == "n" && !new_name.endsWith("unknown")) {
         int n = view_->input_number();
-        if (n == -1)
-          return;
+        if (n == -1) return;
         new_name += QString::number(n);
       } else if (new_name.right(1) == "r") {
         double r = view_->input_real_number();
-        if (r == -1)
-          return;
+        if (r == -1) return;
         new_name += QString::number(r);
       }
       set_class(new_name);
@@ -159,7 +154,5 @@ void Controller::set_class(const QString &name) {
 
 void Controller::next_unknown() {
   int ind = lab_model_->get_unknown_ind();
-  if (ind != -1)
-    change_index(ind);
+  if (ind != -1) change_index(ind);
 }
-

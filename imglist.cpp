@@ -3,8 +3,8 @@
 using std::tuple;
 using std::get;
 
-QListWidgetItem * make_item(const QString &name, const QIcon &icon,
-                              const QSize &item_size) {
+QListWidgetItem *make_item(const QString &name, const QIcon &icon,
+                           const QSize &item_size) {
   QListWidgetItem *item = new QListWidgetItem(icon, name);
   item->setSizeHint(item_size);
   return item;
@@ -12,8 +12,7 @@ QListWidgetItem * make_item(const QString &name, const QIcon &icon,
 
 ImgList::ImgList(const QSize &item_size, bool multiselect)
     : item_size_(item_size) {
-  if (multiselect)
-      setSelectionMode(QAbstractItemView::MultiSelection);
+  if (multiselect) setSelectionMode(QAbstractItemView::MultiSelection);
 
   setFocusPolicy(Qt::NoFocus);
   setViewMode(QListWidget::IconMode);

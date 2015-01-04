@@ -10,18 +10,16 @@ using std::tuple;
 using std::make_tuple;
 using std::get;
 
-ResourceModel::ResourceModel() {
-}
+ResourceModel::ResourceModel() {}
 
-QVector<tuple<QString, QIcon>> ResourceModel::load_imgs(const QString &path,
-    const QVector<QString> &filenames) {
+QVector<tuple<QString, QIcon>> ResourceModel::load_imgs(
+    const QString &path, const QVector<QString> &filenames) {
   QVector<tuple<QString, QIcon>> imgs;
   for (const auto &filename : filenames) {
     QImage img(path + "/" + filename);
     img = img.scaled(img.width() * 2, img.height() * 2, Qt::IgnoreAspectRatio,
-      Qt::SmoothTransformation);
-    imgs.push_back(make_tuple(filename,
-      QIcon(QPixmap::fromImage(img))));
+                     Qt::SmoothTransformation);
+    imgs.push_back(make_tuple(filename, QIcon(QPixmap::fromImage(img))));
   }
   return imgs;
 }
@@ -33,8 +31,8 @@ void ResourceModel::load_sign_icons() {
     QDir dir(dirname);
     for (const auto &name : dir.entryList({"*.gif"})) {
       QString filepath = dirname + name;
-      superclass_icons_.push_back(make_tuple(name.left(name.size() - 4),
-                                             QIcon(filepath)));
+      superclass_icons_.push_back(
+          make_tuple(name.left(name.size() - 4), QIcon(filepath)));
     }
   }
 
@@ -47,8 +45,8 @@ void ResourceModel::load_sign_icons() {
       QVector<tuple<QString, QIcon>> icons;
       for (const auto &name : dir.entryList({"*.gif"})) {
         QString filepath = dirname + name;
-        icons.push_back(make_tuple(name.left(name.size() - 4),
-                                   QIcon(filepath)));
+        icons.push_back(
+            make_tuple(name.left(name.size() - 4), QIcon(filepath)));
       }
       class_icons_.push_back(icons);
     }
@@ -63,21 +61,18 @@ QVector<tuple<QString, QIcon>> ResourceModel::get_class_icons(
     const QString &superclass_name) const {
   int i = 0;
   for (; i < superclass_icons_.size(); ++i)
-    if (get<0>(superclass_icons_[i]) == superclass_name)
-      break;
+    if (get<0>(superclass_icons_[i]) == superclass_name) break;
 
-  if (i == superclass_icons_.size())
-    throw "Superclass name not found";
+  if (i == superclass_icons_.size()) throw "Superclass name not found";
 
   return class_icons_[i];
 }
 
 QString ResourceModel::get_superclass_by_classname(const QString &classname)
-  const {
+    const {
   for (int i = 0; i < class_icons_.size(); ++i) {
     for (const auto &class_pair : class_icons_[i]) {
-      if (get<0>(class_pair) == classname)
-        return get<0>(superclass_icons_[i]);
+      if (get<0>(class_pair) == classname) return get<0>(superclass_icons_[i]);
     }
   }
   return "";

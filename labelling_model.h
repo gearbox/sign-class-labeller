@@ -19,7 +19,7 @@ class LabellingModel {
   void save_labelling(QTextStream &stream);
 
   QVector<std::tuple<QString, QString, QVector<std::tuple<QString, bool>>>>
-  get_labelling() const;
+      get_labelling() const;
 
   QVector<QString> get_filenames() const;
   void set_marks(const QVector<std::tuple<QString, bool>> &marks);
@@ -40,7 +40,7 @@ class LabellingModel {
 
  private:
   QVector<std::tuple<QString, QString, QVector<std::tuple<QString, bool>>>>
-  labelling_;
+      labelling_;
   QString dirname_;
   int sign_index_;
   bool loaded_;

@@ -39,7 +39,7 @@ class View : public QWidget {
 
   void select_icon(const QString &label);
 
- signals:
+signals:
   void open_labelling();
   void next_img();
   void prev_img();
@@ -48,7 +48,8 @@ class View : public QWidget {
   void icon_click(const QString &name);
   void sign_img_selection_change();
 
- private slots:
+ private
+slots:
   void icon_clicked(QListWidgetItem *item);
 
  private:

@@ -11,8 +11,8 @@ class ResourceModel {
  public:
   ResourceModel();
 
-  QVector<std::tuple<QString, QIcon>> load_imgs(const QString &path,
-                                    const QVector<QString> &filenames);
+  QVector<std::tuple<QString, QIcon>> load_imgs(
+      const QString &path, const QVector<QString> &filenames);
 
   void load_sign_icons();
 

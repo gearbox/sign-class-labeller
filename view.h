@@ -35,6 +35,7 @@ class View : public QWidget {
   void set_class_label(const QString &label);
   void set_count_label(int cur_val, int max_val);
   int input_number();
+  int image_ind_dialog(int max_ind);
   double input_real_number();
 
   void select_icon(const QString &label);
@@ -45,6 +46,7 @@ signals:
   void prev_img();
   void next_unknown();
   void show_superclass_icons();
+  void go_to();
   void icon_click(const QString &name);
   void sign_img_selection_change();
 
@@ -55,7 +57,8 @@ slots:
  private:
   QPushButton *open_button_, *back_button_, *prev_button_, *next_button_;
   QPushButton *unknown_button_;
-  QShortcut *prev_shortcut_, *next_shortcut_, *superclass_shortcut_;
+  QShortcut *prev_shortcut_, *next_shortcut_, *superclass_shortcut_,
+    *goto_shortcut_;
   QLabel *class_label_, *count_label_;
   ImgList *class_icons_, *sign_imgs_;
 

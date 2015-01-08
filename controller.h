@@ -23,6 +23,7 @@ slots:
   void next_img();
   void prev_img();
   void next_unknown();
+  void go_to();
   void icon_click(const QString &name);
   void save_labelling();
   void update_navigation();

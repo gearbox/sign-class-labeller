@@ -27,6 +27,7 @@ Controller::Controller(View *view, bool block_opt)
           SLOT(save_labelling()));
   connect(view_, SIGNAL(sign_img_selection_change()), this,
           SLOT(update_navigation()));
+  connect(view_, SIGNAL(go_to()), this, SLOT(go_to()));
 }
 
 void Controller::open_labelling() {
@@ -85,6 +86,12 @@ void Controller::show_class_icons(const QString &superclass_name) {
 void Controller::next_img() { change_index(lab_model_->get_sign_index() + 1); }
 
 void Controller::prev_img() { change_index(lab_model_->get_sign_index() - 1); }
+
+void Controller::go_to() {
+  int ind = view_->image_ind_dialog(lab_model_->get_labelling().size());
+  if (ind != -1)
+    change_index(ind - 1);
+}
 
 void Controller::select_current_class_icon() {
   QString current_class = lab_model_->get_class();

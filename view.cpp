@@ -57,6 +57,7 @@ void View::set_shortcuts() {
   BIND(next_shortcut_, "Right", next_img);
   BIND(next_shortcut_, "Space", next_img);
   BIND(superclass_shortcut_, "Backspace", show_superclass_icons);
+  BIND(goto_shortcut_, "g", go_to);
 
 #undef BIND
 }
@@ -189,6 +190,15 @@ void View::set_class_label(const QString &label) {
 void View::set_count_label(int cur_val, int max_val) {
   count_label_->setText(QString::number(cur_val) + "/" +
                         QString::number(max_val));
+}
+
+int View::image_ind_dialog(int max_ind) {
+  bool ok;
+  int ind = QInputDialog::getInt(this, "Input frame number", "Frame number:", 1,
+                                 1, max_ind, 1, &ok);
+  if (ok)
+    return ind;
+  return -1;
 }
 
 int View::input_number() {
